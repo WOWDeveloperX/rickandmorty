@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/dataLoader.dart';
+import 'package:http/http.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -29,36 +31,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<Person>? persons = null;
   Exception? error = null;
 
+  void _incrementCounter() {}
 
-void _incrementCounter() { }
-
-void loadData() async {
-  try {
-    var personLoad = await loadPersons();
+  void loadData() async {
+    try {
+      var personLoad = await loadPersons();
       setState(() {
         this.persons = personLoad;
-          }); 
-          }on Exception catch(exeption){ setState(() {error = exeption ;
-    }); 
+      });
+    } on Exception catch (exeption) {
+      setState(() {
+        error = exeption;
+      });
+    }
+
+    var personLoad = await loadPersons();
+    setState(() {
+      this.persons = personLoad;
+    });
   }
 
-var personLoad = await loadPersons();
-setState(() {
-this.persons = personLoad;
-
-  }); 
-      }
-
-
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loadData()
+    loadData();
   }
 
   @override
