@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rickandmorty/dataLoader.dart';
 import 'package:http/http.dart';
 
-
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -54,19 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  
+  
+  
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadData();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -88,7 +87,42 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+
+Widget personsList(BuildContext context, List<Person> persons) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        'persons list leght is ${persons.length}',
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    ],
+  );
+}
+Widget loader (BuildContext context, List<Person> persons) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        'load data...',
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    ],
+  );
 }
 
 
-// оставновиолся на 56мин
+Widget exceptionStub (BuildContext context, Exception exception) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        'OOOPS ERROR IS ${exception.toString()}',
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    ],
+  );
+}
+
+}

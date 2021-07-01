@@ -20,5 +20,9 @@ Future<List<Person>> loadPersons() async {
     person.id = json["id"];
     person.name = jsonPerson["name"];
     person.status = jsonPerson["status"];
+
+    results.add(person);
   }
+
+  return results; 
 }
