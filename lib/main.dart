@@ -80,15 +80,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget personsList(BuildContext context, List<Person> persons) {
     return ListView.builder(
-      itemCount: persons.length,
-      itemBuilder: (context, index) => Row(
-        children: [
-          IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
-          Text(persons[index].id.toString()),
-          Text(persons[index].name + persons[index].status),
-        ],
-      ),
-    );
+        itemCount: persons.length,
+        itemBuilder: (context, index) => Flexible(
+              child: Row(
+                children: [
+                  IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
+                  Padding(
+                      padding: EdgeInsets.all(3),
+                      child: Text(
+                        persons[index].id.toString(),
+                        style: TextStyle(fontSize: 20),
+                      )),
+                  Text(
+                    persons[index].name + persons[index].status,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ));
   }
 
   Widget loader(BuildContext context) {
@@ -96,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'load data...',
+          'Load data...',
           style: Theme.of(context).textTheme.headline4,
         ),
       ],
