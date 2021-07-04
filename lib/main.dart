@@ -82,7 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return ListView.builder(
       itemCount: persons.length,
       itemBuilder: (context, index) => Row(
-        children: [IconButton(onPressed: () => {}, icon: Icon(Icons.person))],
+        children: [
+          IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
+          Text(persons[index].id.toString()),
+          Text(persons[index].name + persons[index].status),
+        ],
       ),
     );
   }
