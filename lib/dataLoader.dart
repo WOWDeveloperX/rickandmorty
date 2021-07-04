@@ -15,14 +15,18 @@ Future<List<Person>> loadPersons() async {
   List<dynamic> jsonPerson = json["results"];
   List<Person> results = [];
 
-  for (var jsonPerson in jsonPerson) {
-    Person person = Person();
-    person.id = json["id"];
-    person.name = jsonPerson["name"];
-    person.status = jsonPerson["status"];
+  try {
+    for (var jsonPerson in jsonPerson) {
+      Person person = Person();
+      person.id = jsonPerson["id"];
+      person.name = jsonPerson["name"];
+      person.status = jsonPerson["status"];
 
-    results.add(person);
+      results.add(person);
+    }
+  } catch (e) {
+    rethrow;
+  }
+    return results;
   }
 
-  return results; 
-}

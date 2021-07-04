@@ -43,13 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
     } on Exception catch (exeption) {
       setState(() {
         error = exeption;
+        print("Oops, we catch warning");
       });
     }
-
-    var personLoad = await loadPersons();
-    setState(() {
-      this.persons = personLoad;
-    });
+    print("End of loading");
   }
 
   @override
@@ -72,20 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       content = loader(context);
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+      body: Center(child: content),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -95,18 +79,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget personsList(BuildContext context, List<Person> persons) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          'persons list leght is ${persons.length}',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ],
+    return ListView.builder(
+      itemCount: persons.length,
+      itemBuilder: (context, index) => Row(
+        children: [IconButton(onPressed: () => {}, icon: Icon(Icons.person))],
+      ),
     );
   }
 
-  Widget loader(BuildContext context, List<Person> persons) {
+  Widget loader(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
