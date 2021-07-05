@@ -11,6 +11,7 @@ class PersonDetails {
   String created = "";
   String type = "";
   String gender = "";
+
   String originName = "";
   String originUrl = "";
   List<String> episodes = [];
@@ -23,7 +24,6 @@ Future<PersonDetails> loadPerson(int id) async {
 
   var item = convert.jsonDecode(response.body);
   person = PersonDetails();
-
   person.id = item["id"];
   person.name = item["name"];
   person.avatar = item["image"];
@@ -38,6 +38,3 @@ Future<PersonDetails> loadPerson(int id) async {
 
   return person;
 }
-
-
-

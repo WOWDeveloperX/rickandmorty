@@ -12,21 +12,16 @@ Future<List<Person>> loadPersons() async {
       await http.get(Uri.parse("https://rickandmortyapi.com/api/character"));
   var json = convert.jsonDecode(response.body);
 
-  List<dynamic> jsonPerson = json["results"];
+  List<dynamic> jsonPersons = json["results"];
   List<Person> results = [];
 
-  try {
-    for (var jsonPerson in jsonPerson) {
-      Person person = Person();
-      person.id = jsonPerson["id"];
-      person.name = jsonPerson["name"];
-      person.status = jsonPerson["status"];
+  for (var jsonPerson in jsonPersons) {
+    Person person = Person();
+    person.id = jsonPerson["id"];
+    person.name = jsonPerson["name"];
+    person.status = jsonPerson["status"];
 
-      results.add(person);
-    }
-  } catch (e) {
-    rethrow;
+    results.add(person);
   }
-    return results;
-  }
-
+  return results;
+}

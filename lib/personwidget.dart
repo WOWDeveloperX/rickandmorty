@@ -14,7 +14,7 @@ class _State extends State<PersonDetailsPage> {
   _State({required this.id}) : super();
 
   int id;
-  PersonDetails? person= null ;
+  PersonDetails? person = null;
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ class _State extends State<PersonDetailsPage> {
     loadData();
   }
 
-  void loadData() async   {
+  void loadData() async {
     var personInfo = await loadPerson(id);
     setState(() {
       person = personInfo;
@@ -58,3 +58,6 @@ class _State extends State<PersonDetailsPage> {
     );
   }
 }
+
+
+//  

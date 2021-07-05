@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rickandmorty/dataLoader.dart';
-import 'package:rickandmorty/personloader.dart';
+import 'package:rickandmorty/dataloader.dart';
 import 'package:rickandmorty/personwidget.dart';
 
 void main() {
@@ -35,12 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Exception? error = null;
 
   void _incrementCounter() {}
-
   void loadData() async {
+    //тут 50 минута
     try {
       var personLoad = await loadPersons();
       setState(() {
-        this.persons = personLoad;
+        this.persons = personLoad; // 53 минута
       });
     } on Exception catch (exeption) {
       setState(() {
@@ -83,14 +82,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget personsList(BuildContext context, List<Person> persons) {
     return ListView.builder(
         itemCount: persons.length,
-        itemBuilder: (context, index) => Flexible(
+        itemBuilder: (BuildContext context, index) => Flexible(
               child: Row(
                 children: [
-                  IconButton(onPressed: () => {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=> PersonDetailsPage(
-                            id: persons[index].id)))
-                  }, icon: Icon(Icons.person)),
+                  IconButton(
+                      onPressed: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PersonDetailsPage(
+                                        id: persons[index].id)))
+                          },
+                      icon: Icon(Icons.person)),
                   Padding(
                       padding: EdgeInsets.all(3),
                       child: Text(
