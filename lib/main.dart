@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/dataLoader.dart';
+import 'package:rickandmorty/personloader.dart';
+import 'package:rickandmorty/personwidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -84,7 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
         itemBuilder: (context, index) => Flexible(
               child: Row(
                 children: [
-                  IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
+                  IconButton(onPressed: () => {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context)=> PersonDetailsPage(
+                            id: persons[index].id)))
+                  }, icon: Icon(Icons.person)),
                   Padding(
                       padding: EdgeInsets.all(3),
                       child: Text(
