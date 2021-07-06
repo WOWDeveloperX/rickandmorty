@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rickandmorty/personwidget.dart';
 import 'package:rickandmorty/dataLoader.dart';
 
-
-
 void main() {
   runApp(MyApp());
 }
@@ -69,9 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
       content = loader(context);
 
     return Scaffold(
-      body: Center(child: content
-      ),
-      );
+      body: Center(child: content),
+    );
   }
 
   Widget personsList(BuildContext context, List<Person> persons) {
@@ -93,14 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: EdgeInsets.all(8),
                       child: Text(
                         persons[index].id.toString(),
-                        style: TextStyle(fontSize: 25
-                        ),
+                        style: TextStyle(fontSize: 25),
                       )),
                   Text(
                     persons[index].name + persons[index].status,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 20
-                    ),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),

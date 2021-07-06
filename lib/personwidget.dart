@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/personloader.dart';
 
-
-
 class PersonDetailsPage extends StatefulWidget {
   PersonDetailsPage({required this.id}) : super();
 
@@ -16,7 +14,7 @@ class _State extends State<PersonDetailsPage> {
   _State({required this.id}) : super();
 
   int id;
-  PersonDetails ? person = null;
+  PersonDetails? person = null;
 
   @override
   void initState() {
