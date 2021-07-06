@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rickandmorty/dataloader.dart';
 import 'package:rickandmorty/personwidget.dart';
+import 'package:rickandmorty/dataLoader.dart';
+
+
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,13 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Person>? persons = null;
   Exception? error = null;
 
-  void _incrementCounter() {}
   void loadData() async {
-    //тут 50 минута
     try {
       var personLoad = await loadPersons();
       setState(() {
-        this.persons = personLoad; // 53 минута
+        persons = personLoad;
       });
     } on Exception catch (exeption) {
       setState(() {
@@ -70,19 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
       content = loader(context);
 
     return Scaffold(
-      body: Center(child: content),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: Center(child: content
       ),
-    );
+      );
   }
 
   Widget personsList(BuildContext context, List<Person> persons) {
     return ListView.builder(
         itemCount: persons.length,
-        itemBuilder: (BuildContext context, index) => Flexible(
+        itemBuilder: (context, index) => Flexible(
               child: Row(
                 children: [
                   IconButton(
@@ -95,15 +90,17 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                       icon: Icon(Icons.person)),
                   Padding(
-                      padding: EdgeInsets.all(3),
+                      padding: EdgeInsets.all(8),
                       child: Text(
                         persons[index].id.toString(),
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 25
+                        ),
                       )),
                   Text(
                     persons[index].name + persons[index].status,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20
+                    ),
                   ),
                 ],
               ),
