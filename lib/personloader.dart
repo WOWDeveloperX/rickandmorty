@@ -34,7 +34,7 @@ Future<PersonDetails> loadPerson(int id) async {
   person.gender = item["gender"];
   person.type = item["type"];
   person.originName = item["origin"]["name"];
-  person.originUrl = item["origin][url"];
+  person.originUrl = item["origin"]["url"];
 
   return person;
 }

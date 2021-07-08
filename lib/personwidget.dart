@@ -45,7 +45,7 @@ class _State extends State<PersonDetailsPage> {
                   width: double.infinity,
                 ),
                 onTap: () => {}),
-            Text(person.name),
+            // Text(person.name),
           ],
         ),
       );

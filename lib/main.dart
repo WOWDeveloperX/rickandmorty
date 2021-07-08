@@ -73,56 +73,57 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget personsList(BuildContext context, List<Person> persons) {
     return ListView.builder(
-        itemCount: persons.length,
-        itemBuilder: (context, index) => Flexible(
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PersonDetailsPage(
-                                        id: persons[index].id)))
-                          },
-                      icon: Icon(Icons.person)),
-                  Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Text(
-                        persons[index].id.toString(),
-                        style: TextStyle(fontSize: 25),
-                      )),
-                  Text(
-                    persons[index].name + persons[index].status,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-            ));
-  }
-
-  Widget loader(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          'Load data...',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ],
+      itemCount: persons.length,
+      itemBuilder: (context, index) => Row(
+        children: [
+          IconButton(
+              onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            PersonDetailsPage(id: persons[index].id),
+                      ),
+                    ),
+                  },
+              icon: Icon(Icons.person)),
+          Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                persons[index].id.toString(),
+                style: TextStyle(fontSize: 25),
+              )),
+          Text(
+            persons[index].name + persons[index].status,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 20),
+          ),
+        ],
+      ),
     );
   }
+}
 
-  Widget exceptionStub(BuildContext context, Exception exception) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          'OOOPS ERROR IS ${exception.toString()}',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ],
-    );
-  }
+Widget loader(BuildContext context) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        'Load data...',
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    ],
+  );
+}
+
+Widget exceptionStub(BuildContext context, Exception exception) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        'OOOPS ERROR IS ${exception.toString()}',
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    ],
+  );
 }
