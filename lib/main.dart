@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/personwidget.dart';
 import 'package:rickandmorty/dataLoader.dart';
@@ -71,59 +74,89 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+//  Изменил
   Widget personsList(BuildContext context, List<Person> persons) {
-    return ListView.builder(
-      itemCount: persons.length,
-      itemBuilder: (context, index) => Row(
-        children: [
-          IconButton(
-              onPressed: () => {
+    return SafeArea(
+        child: ListView.builder(
+            padding: EdgeInsets.all(10.0),
+            itemCount: persons.length,
+            itemBuilder: (context, index) => InkWell(
+                  onTap: () => {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            PersonDetailsPage(id: persons[index].id),
-                      ),
-                    ),
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                PersonDetailsPage(id: persons[index].id)))
                   },
-              icon: Icon(Icons.person)),
-          Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                persons[index].id.toString(),
-                style: TextStyle(fontSize: 25),
-              )),
-          Text(
-            persons[index].name + persons[index].status,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 20),
-          ),
-        ],
-      ),
+                  child: Row(
+                    children: [
+                      if (persons[index].status == "Alive")
+                        Icon(
+                          Icons.person,
+                          color: Colors.greenAccent,
+                        ),
+                      if (persons[index].status == "Dead")
+                        Icon(
+                          Icons.person,
+                          color: Colors.redAccent,
+                        ),
+                      if (persons[index].status == "unknown")
+                        Icon(
+                          Icons.person,
+                          color: Colors.black12,
+                        ),
+                      Expanded(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(
+                                    top: 0, bottom: 4, left: 8, right: 0),
+                                child: Text(persons[index].name,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(
+                                    top: 0, bottom: 4, left: 8, right: 0),
+                                child: Text(
+                                  persons[index].status,
+                                  style: TextStyle(
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                              ),
+                            ]),
+                      ),
+                    ],
+                  ),
+                )));
+  }
+
+//  изменил
+  Widget loader(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Image.asset(
+          "ing/loaing.gif",
+          height: 300.0,
+        ),
+      ],
     );
   }
-}
 
-Widget loader(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      Text(
-        'Load data...',
-        style: Theme.of(context).textTheme.headline4,
-      ),
-    ],
-  );
-}
-
-Widget exceptionStub(BuildContext context, Exception exception) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      Text(
-        'OOOPS ERROR IS ${exception.toString()}',
-        style: Theme.of(context).textTheme.headline4,
-      ),
-    ],
-  );
+// не требует изменений
+  Widget exceptionStub(BuildContext context, Exception exception) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          'OOOPS ERROR IS ${exception.toString()}',
+          style: Theme.of(context).textTheme.headline4,
+        ),
+      ],
+    );
+  }
 }
