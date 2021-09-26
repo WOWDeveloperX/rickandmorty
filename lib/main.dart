@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -140,8 +139,8 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Image.asset(
-          "ing/loaing.gif",
-          height: 300.0,
+          "images/loading.gif",
+          height: 900.0,
         ),
       ],
     );

@@ -14,7 +14,7 @@ class _State extends State<PersonDetailsPage> {
   _State({required this.id}) : super();
 
   int id;
-  PersonDetails? person = null;
+  PersonDetails? person;
 
   @override
   void initState() {

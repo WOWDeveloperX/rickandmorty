@@ -17,7 +17,7 @@ Future<List<Person>> loadPersons() async {
 
   for (int i = 1; i <= jsonInfo["pages"]; i++) {
     response = await http.get(Uri.parse(
-        "https://rickandmortyapi.com/api/character/?page=${i}")); //скобки интерполяции
+        "https://rickandmortyapi.com/api/character/?page=${1}")); //скобки интерполяции
     json = convert.jsonDecode(response.body);
     jsonPersons = json["results"];
 
