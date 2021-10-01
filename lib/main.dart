@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )));
   }
 
-//  изменил
+
   Widget loader(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-// не требует изменений
+
   Widget exceptionStub(BuildContext context, Exception exception) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

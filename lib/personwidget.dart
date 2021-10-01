@@ -52,6 +52,7 @@ class _State extends State<PersonDetailsPage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: Text("Person details"),
       ),
       body: widget,
