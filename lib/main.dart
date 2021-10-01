@@ -31,8 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Person>? persons = null;
-  Exception? error = null;
+  List<Person>? persons;
+  Exception? error;
 
   void loadData() async {
     try {
@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       content = loader(context);
 
     return Scaffold(
+      backgroundColor: Colors.green.shade100,
       body: Center(child: content),
     );
   }
@@ -140,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: <Widget>[
         Image.asset(
           "images/loading.gif",
-          height: 900.0,
+          height: 650.0,
         ),
       ],
     );
